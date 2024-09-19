@@ -1,412 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXTFWCB75G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="utf-8">
+    <meta name="description"
+          content="FLaRe: Achieving Masterful and Adaptive Robot Policies with Large-Scale Reinforcement Learning Fine-Tuning">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FLaRe: Achieving Masterful and Adaptive Robot Policies with Large-Scale Reinforcement Learning Fine-Tuning</title>
 
-  gtag('config', 'G-MXTFWCB75G');
-</script>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
 
-  <meta charset="utf-8">
-  <meta name="description"
-        content="SPOC: Imitating Shortest Paths in Simulation Enables Effective Navigation and Manipulation in the Real World.">
-  <meta name="keywords" content="SPOC, CHORES">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPOC: Imitating Shortest Paths in Simulation Enables Effective Navigation and Manipulation in the Real World</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-
-<!--  <script>-->
-<!--    $(function(){-->
-<!--      $("#grid").load("static/modified-grid.html");-->
-<!--    });-->
-<!--  </script>-->
 </head>
 <body>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-</nav> -->
+<!--<nav class="navbar" role="navigation" aria-label="main navigation">-->
+<!--    <div class="navbar-brand">-->
+<!--        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">-->
+<!--            <span aria-hidden="true"></span>-->
+<!--            <span aria-hidden="true"></span>-->
+<!--            <span aria-hidden="true"></span>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</nav>-->
 
+<section class="hero" id="video-background">
+    <video autoplay muted loop id="background-video">
+        <source src="static/videos/out_cut.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered text-frame">
+                    <h1 class="title is-1 publication-title">FLaRe: Achieving Masterful and Adaptive Robot Policies with Large-Scale Reinforcement Learning Fine-Tuning</h1>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                            <span><a href="https://jiahenghu.github.io/">Jiaheng Hu</a><sup>1,2</sup>, </span>
+                            <span><a href="https://rosehendrix.com/">Rose Hendrix</a><sup>1</sup>, </span>
+                            <span><a href="https://homes.cs.washington.edu/~ali/">Ali Farhadi</a><sup>1,3</sup>, </span>
+                            <span><a href="https://anikem.github.io/">Aniruddha Kembhavi</a><sup>1,3</sup>, </span>
+                            <br>
+                            <span><a href="https://robertomartinmartin.com/">Roberto Martín-Martín</a><sup>2</sup>, </span>
+                            <span><a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a><sup>2,4</sup>, </span>
+                            <span><a href="https://kuohaozeng.github.io/">Kuo-Hao Zeng</a><sup>1,†</sup>, </span>
+                            <span><a href="https://ehsanik.github.io/Home.html">Kiana Ehsani</a><sup>1,†</sup> </span>
+                        </span>
+                    </div>
+                      <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>†</sup>Equal Supervision</span>
+                        <br>
+                        <span class="author-block"><sup>1</sup>Allen Institute for AI,</span>
+                        <span class="author-block"><sup>2</sup>University of Texas at Austin,</span>
+                        <span class="author-block"><sup>3</sup>University of Washington,</span>
+                        <span class="author-block"><sup>4</sup>Sony AI,</span>
 
-<section class="hero is-dark">
-  <div class="hero-body">
-    <div class="container is-max-desktop" style="max-width: 1200px;">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">SPOC 🖖 <br> </h1>
-          <h1 class="title is-3"><i>Imitating Shortest Paths in Simulation<br>Enables Effective Navigation and Manipulation in the Real World</i></h1>
-
-
-        <div class="is-size-5 publication-authors">
-            <span class="author-block" id="first-authors">
-                <span><a>Kiana Ehsani </a><sup>*</sup><sup>1</sup>, </span>
-                <span><a>Tanmay Gupta</a><sup>*</sup><sup>1</sup>, </span>
-                <span><a>Rose Hendrix</a><sup>*</sup><sup>1</sup>, </span>
-                <span><a>Jordi Salvador</a><sup>*</sup><sup>1</sup>, </span>
-                <span><a>Luca Weihs</a><sup>*</sup><sup>1</sup>, </span>
-                <span><a>Kuo-Hao Zeng</a><sup>*</sup><sup>1</sup>, </span>
-            </span>
-            <span class="author-block">
-                <span><a>Kunal Pratap Singh</a><sup>3</sup>,</span>
-                <span><a>Yejin Kim</a><sup>1</sup>,</span>
-                <span><a>Winson Han</a><sup>1</sup>,</span>
-                <span><a>Alvaro Herrasti</a><sup>1</sup>,</span>
-                <span><a>Ranjay Krishna</a><sup>1,2</sup>,</span>
-                <span><a>Dustin Schwenk</a><sup>1</sup>,</span>
-                <span><a>Eli VanderBilt</a><sup>1</sup>,</span>
-            </span>
-            <span class="author-block">
-                <span><a>Aniruddha Kembhavi</a><sup>1,2</sup></span>
-            </span>
+                      </div>
+                    <div class="column has-text-centered">
+                        <span class="publication-links">
+                            <span class="link-block"><a target="_blank" href="https://arxiv.org/pdf/2406.20083" class="external-link button is-normal is-rounded is-light"><span class="icon"><svg class="svg-inline--fa fa-file fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path></svg></span><span>Paper</span></a></span>
+                            <span class="link-block"><a target="_blank" href="https://arxiv.org/pdf/2312.02976.pdf" class="external-link button is-normal is-rounded is-light"><span class="icon"><i class="fas fa-file-pdf"></i></span><span>Supplement</span></a></span>
+                            <span class="link-block"><a target="_blank" href="https://github.com/allenai/spoc-robot-training" class="external-link button is-normal is-rounded is-light"><span class="icon"><svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></span><span>Code (coming soon)</span></a></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <script>
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+<br>
 
-        function updateAuthors() {
-            const authorBlock = document.querySelector('#first-authors');
-            const authors = Array.from(authorBlock.querySelectorAll('span'));
-            authorBlock.style.opacity = 0;
-
-            setTimeout(() => {
-                const shuffledAuthors = shuffleArray(authors);
-                authorBlock.innerHTML = '';
-                shuffledAuthors.forEach(author => authorBlock.appendChild(author));
-                authorBlock.style.opacity = 1;
-            }, 500); // Adjust this timeout to match the CSS transition time
-        }
-
-        updateAuthors()
-        setInterval(updateAuthors, 2 * 1000);
-        </script>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>*</sup>Equal Contribution, ordered randomly</span>
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <div class="hero">
             <br>
-            <span class="author-block"><sup>1</sup>Allen Institute for AI,</span>
-            <span class="author-block"><sup>2</sup>University of Washington,</span>
-            <span class="author-block"><sup>3</sup>EPFL</span>
-
-          </div>
-
-          <div class="column has-text-centered">
-            <span class="publication-links">
-
-            <span class="link-block"><a target="_blank" href="https://arxiv.org/pdf/2312.02976.pdf" class="external-link
-                button is-normal is-rounded is-light"><span class="icon"><i class="fas fa-file"></i></span><span>arXiv</span></a></span>
-
-               <span class="link-block"><a target="_blank" href="https://github.com/allenai/spoc-robot-training" class="external-link
-                   button is-normal is-rounded is-light"><span class="icon"><i class="fab fa-github"></i></span><span>Code and Data</span></a></span>
-
-               <span class="link-block"><a target="_blank" href="https://www.youtube.com/watch?v=NmUft7Zf-js" class="external-link
-                    button is-normal is-rounded is-light"><span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span></a></span>
-
-<!--                <span class="link-block">-->
-<!--                    <a href=""-->
-<!--                       class="button is-normal is-rounded is-light">-->
-<!--                      <span class="icon">-->
-<!--                          <i class="far fa-images"></i>-->
-<!--                      </span>-->
-<!--                      <span>Dataset</span>-->
-<!--                    </a>-->
-<!--                </span>-->
-            </span>
-          </div>
-
-<!--          <div class="column has-text-centered">-->
-<!--            <div class="publication-links">-->
-<!--              <span class="link-block">-->
-<!--                <a href=""-->
-<!--                   class="external-link button is-normal is-rounded is-dark">-->
-<!--                  <span class="icon">-->
-<!--                      <i class="far fa-images"></i>-->
-<!--                  </span>-->
-<!--                  <span>Data</span>-->
-<!--                  </a>-->
-<!--            </div>-->
-<!--          </div>-->
+            <h2 class="subtitle">
+                FLaRe fine-tunes transformer BC policies pre-trained on large Robotics datasets with large-scale RL, achieving SoTA results across a set of manipulation and navigation tasks, in both simulation and real-world. 
+                Furthermore, FLaRe shows exceptional adaptation capabilites towards mastering new task capacities, new embodiments, and new objectives efficiently.
+                <!-- (see <a href="#numbers">Performance</a>). -->
+            </h2>
+            <img src="./static/images/teaser_crop-1.png"
+                 class="interpolation-image"
+                 width="800"
+                 style="display: block; margin-left: auto; margin-right: auto"
+                 alt="header-image."/>
+            <br>
+<!--             <img src="./static/images/model_v2-1.png"
+                 class="interpolation-image"
+                 alt="header-image."/>
+            <br> -->
+            <h2 class="subtitle">
+                A key reason for the success of FLaRe is a set of simple but extremely important techniques to ensure that the RL fine-tuning can be carried out stably, including 1) fine-tuning from a multi-task robotics policy, 2) large-scale fine-tuning in simulation, 3) using an on-policy algorithm as opposed to off-policy methods, 4) utilizing smaller learning rate than when performing RL from scratch, 5) disabling the entropy bonus objective that can potentially distort the policy at the start of the training, and 6) separating the actor and the critic network, so that the critic update will not influence the policy prediction.
+            </h2>
+            <img src="./static/images/recipe_v2-1.png"
+                 class="interpolation-image"
+                 alt="header-image."/>
+            <br>
+            <h2 class="subtitle">
+                
+            </h2>
+            <br>
+            <br>
         </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero teaser is-dark">
-    <div class="container ">
-        <div class="hero-body">
-        <!--suppress CheckImageSize -->
-            <img src="./static/images/teaser_vida.png"
-                    class="interpolation-image"
-                    alt="header-image." width="1200px" height="auto"/>
-        <h2 class="subtitle has-text-centered">
-            <span class="dspoc">SPOC</span> learns from <i>shortest paths</i> to navigate, explore, and manipulate objects in simulation and the real world.
-        </h2>
-        </div>
-
     </div>
 </section>
-
-
 
 <section class="section hero is-light">
-  <div class="container is-max-desktop" style="max-width: 1200px;">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3 has-text-centered" id="Real-world examples">Real-world Qualitative Results</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        Here we present a number of real-world examples filmed in a real-world apartment <b>never seen</b> by the robot during training. All results are
+                        collected using policies generated by <span class="dpoliformer">FLaRe</span> tine-tuning. In each video, we show the robot's RGB cameras input, as well as a 3rd person perspective. All videos are sped up by up to 20x for ease of viewing.
+                    </p>
 
-        <h2 class="title is-3" id="what-is-spoc">Highlights</h2>
-        <!-- <div class="content" > -->
-        <p>
-          <div class="grid-container-one-no-box">
-              <div class="grid-item">
-                <div class="card-static-container">
-                    <div class="card-container">
-                        <div class="card">
-                            <div class="card-image" style="background-image: url('static/images/spoc-shortest-path.jpg');"></div>
-                            <div class="card-content">
-                                <h5><strong>Exploration emerges from imitating shortest paths.</strong></h5><br>
-                                <p><i>No RL and No human data!<br>Scale is the key.</i></p>
-                                <!-- <p>Description for card 1...</p> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-image" style="background-image: url('static/images/spoc-rgb.jpg');"></div>
-                            <div class="card-content">
-                                <h5><strong>SPOC only uses RGB Observations! </strong></h5><br>
-                                <p><i>No Depth/ LiDAR, No map.<br>No privileged information!</i></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-image" style="background-image: url('static/images/procthor15.jpg');"></div>
-                            <div class="card-content">
-                                <h5><strong>SPOC is trained in Simulation. </strong></h5><br>
-                                <p><i>No sim-to-real adaptation.<br>No real-world fine-tuning!</i></p>
-
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-image" style="background-image: url('static/topdown_sim_images/success__013205__television_receiver.n.01__102.jpg');"></div>
-                            <div class="card-content">
-                                <h5><strong>SPOC is proficient at long-horizon tasks.</strong></h5><br>
-                                <p><i>Including both navigation and manipulation.</i></p>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="./static/images/real_world_layouts_v2-1.png" class="interpolation-image" alt="floorplan"/>
+                    <h5 class="subtitle has-text-centered">
+                        Floorplan of the real-world environment used for these qualitative examples.
+                    </h5>
                 </div>
-            <!-- </div>
-            </div> -->
-             </div>
+
+                <h2 class="title is-3" id="ttsc">FLaRe for seen capabilities</h2>
+                <p>
+                    For tasks that are in the trainig data of the base model that FLaRe fine-tunes upon, FLaRe can effectively align the policies towards task completion, thereby achieving state-of-the-art performances. Below, we show examples of tasks TODO
+                </p>
+                <br>
+
+                <h3 class="title is-4" id="find_apple_locobot">Find an apple (LoCoBot)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> finds an apple after navigating down a long hallway
+                        with many obstacles, including a chair that moves during the trajectory.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/find_apple_locobot_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h3 class="title is-4" id="find_humans_book_stretch">Find a book with title "Humans" (Stretch RE-1)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> ignores the book it begins the episode looking at
+                        and searches multiple rooms until it finds the book with the title "Humans". Please see the main
+                        paper for a close up of the book in question, space constraints on the supplementary materials
+                        prevent us from uploading a high resolution video of this trajectory.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/find_humans_book_stretch_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+
+                <h3 class="title is-4" id="find_kitchen_stretch">Find the kitchen (Stretch RE-1)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        Starting from a bedroom, <span class="dpoliformer">PoliFormer</span> explores, correctly
+                        avoids entering a bathroom, and finally finds the kitchen.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/find_kitchen_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h2 class="title is-3" id="ttsc">FLaRe for unseen capabilities (Maybe change to include...)</h2>
+                <p>
+                    For tasks that are in the trainig data of the base model that FLaRe fine-tunes upon, FLaRe can effectively aligh the policies towards task completion, thereby achieving state-of-the-art performances. Below, we show examples of tasks
+                </p>
+
+
+                <h3 class="title is-4" id="find_multi_stretch">Find a sofa, book, toilet, and houseplant (Stretch
+                    RE-1)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> is able to find multiple objects in a single
+                        episode.
+                        Here it initially finds a sofa and book, then a houseplant, and finally a toilet.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/find_multi_stretch_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h3 class="title is-4" id="follow_toy_truck_stretch">Follow the toy truck (Stretch RE-1)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> follows a toy truck as it moves through multiple
+                        rooms in an indoor environment. Note that
+                        <span class="dpoliformer">PoliFormer</span> is not trained in dynamic environments but is
+                        nevertheless able to navigate while its target moves.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/follow_toy_truck_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h3 class="title is-4" id="follow_person_stretch">Follow the person (Stretch RE-1)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        Similar to the above example, <span class="dpoliformer">PoliFormer</span> follows a person as
+                        they
+                        move down a hallway and into a kitchen.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/follow_person_stretch_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h3 class="title is-4" id="follow_toy_truck_elanding">Follow the toy truck (Stretch RE-1) in a different scene</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> follows a toy truck in a different scene. Note that
+                        even with people walking in the clustered scene,
+                        <span class="dpoliformer">PoliFormer</span> is able to follow the toy truck smoothly over a long horizon.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/real-world/follow_toy_truck_elanding_480p.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
         </div>
     </div>
-  </div>
-  </section>
-
-
-
-<section class="section hero ">
-    <div class="container is-max-desktop" style="max-width: 1200px;">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-
-        <h2 class="title is-3" id="results">Results</h2>
-        <p>SPOC is effective in the real world.
-          Both the environment and the object instances encountered are entirely novel to the model, as its training was exclusively conducted in a simulator.
-          This highlights SPOC's ability to generalize and adapt to previously unencountered, real-world conditions.
-
-
-        </p>
-        <br>
-        <p>
-
-            <div class="grid-container-one-no-box">
-                <div class="grid-item">
-                    <div class="card-static-container">
-                        <div class="card-container">
-                            <div class="card-wide">
-                                <div class="card-video">
-                                    <iframe id="fetch_mug_30hz"
-                                        width="100%"
-                                        height="337.5px"
-                                        src="https://www.youtube.com/embed/zT1l9E1k0c8?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Fetching a mug</strong></h3>
-                                    <p>SPOC successfully locates and picks up a mug.</p>
-                                </div>
-                            </div>
-
-                            <div class="card-wide">
-                                <div class="card-video">
-                                    <iframe id="fetch_apple_livingroom_30hz"
-                                        width="100%"
-                                        height="337.5px"
-                                        src="https://www.youtube.com/embed/4hwBL-xWvCw?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Fetching an apple</strong></h3>
-                                    <p>SPOC successfully searches for and picks up an apple.</p>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-            <div class="grid-item">
-                <div class="card-static-container">
-                    <div class="card-container">
-
-                        <div class="card-wide">
-                            <div class="card-video">
-                                <iframe id="objnav_toilet_30hz"
-                                    width="100%"
-                                    height="337.5px"
-                                    src="https://www.youtube.com/embed/bCWqq2rfhY0?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="card-content">
-                                <h3><strong>Navigate to a toilet</strong></h3>
-                                <p>SPOC successfully explores to find a toilet.</p>
-                            </div>
-                        </div>
-
-                        <div class="card-wide">
-                            <div class="card-video">
-                                <iframe id="find_bed_30hz"
-                                    width="100%"
-                                    height="337.5px"
-                                    src="https://www.youtube.com/embed/Id__IVdnyi0?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="card-content">
-                                <h3><strong>Extended search for a bed</strong></h3>
-                                <p>SPOC explores a long hallway (an uncommon architectural feature within our ProcTHOR training
-                                    scenes).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-                <div class="grid-item">
-                    <div class="card-static-container">
-                        <div class="card-container">
-
-                            <div class="card-wide">
-                                <div class="card-video">
-                                    <iframe id="pickup_plant_30hz"
-                                        width="100%"
-                                        height="337.5px"
-                                        src="https://www.youtube.com/embed/TP3_4v6dUA0?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Pick up a houseplant</strong></h3>
-                                    <p>
-                                        SPOC mistakenly attempts to extend its arm into the coffee table, realizes its error, and is able to progress.
-
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="card-wide">
-                                <div class="card-video">
-                                    <iframe id="find_houseplant_30hz"
-                                        width="100%"
-                                        height="337.5px"
-                                        src="https://www.youtube.com/embed/vUCZG9Rw5qQ?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Find a houseplant</strong></h3>
-                                    <p>A partial failure example: the agent does eventually "succeed" as it takes the done action with a very small sliver of the houseplant visible but this success does not appear robust.
-                                    </p>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-    </div>
-</div>
-</div>
 </section>
 
-
-<section class="section hero is-light ">
+<section class="section hero">
     <div class="container is-max-desktop" style="max-width: 1200px;">
       <div class="columns is-centered">
         <div class="column is-full-width">
 
-        <h2 class="title is-3" id="approach">How does it work?</h2>
+            <h2 class="title is-3 has-text-centered" id="model">Train <u>Poli</u>cy Trans<u>Former</u> (PoliFormer) using Online RL at Scale</h2>
 
         <p style="text-align: justify;">
-        Reinforcement Learning (RL) often faces challenges with speed and efficiency,
-        while Imitation Learning (IL) is constrained by the need for extensive and varied data.
-
-        We show that using transformer architectures with long context windows to imitate heuristic planners
-        at scale can help unlock the power of IL and produce effective agents in simulation and the real world.
-
-        <!-- Utilizing this dataset, SPOC is born, a model trained through IL using a transformer-based architecture, ensuring enhanced learning efficiency and performance. -->
+            Our method, PoliFormer, is a transformer-based model trained with on-policy RL in the AI2-THOR simulator at scale.
         </p>
+        <br>
+            <h3 class="title is-4">Scale in Architecture</h3>
+            <p style="text-align: justify;">
+                We develop a fully transformer-based policy model that uses a powerful visual foundation model (DINOv2, a vision transformer), incorporates a transformer state encoder for improved state summarization, and employs a transformer decoder for explicit temporal memory modeling.
+            </p>
 
         <div class="content">
             <p>
@@ -416,28 +313,6 @@
 
 
             </p>
-            <h3 class="title is-4" id="data">Data</h3>
-            <p>
-              SPOC is trained on a large-scale dataset of expert trajectories,
-              featuring RGB observations with the corresponding expert actions.
-
-                This video showcases a sample from our dataset, displaying the RGB observations captured simultaneously from both the manipulation and navigation cameras. It highlights the specific actions taken by the expert at each time frame during the task of fetching a bowl. This visual representation aids in understanding the synchronized camera inputs and corresponding expert actions within the dataset.
-                <br>
-                <br>
-                <iframe id="fetch_a_bowl_train"
-                    width="100%"
-                    height="315"
-                    src="https://www.youtube.com/embed/4wRIMDEz0Wk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </p>
-            <h3 class="title is-4" id="model">Model</h3>
-
-
-            SPOC, an agent embodied in the Stretch RE-1 robot, is trained to follow text instructions for navigation and task completion. It processes both text instructions and visual data to determine its actions. The Stretch Robot uses two cameras: one for navigation and another for arm movements. The model has three main parts: a textual goal encoder for language instructions, a visual encoder that adapts to instructions for each visual input, and a transformer action decoder that predicts each action based on the goal, current and past visuals, and previous actions.
-
-
 
             <p>
                 <div class="grid-container-two">
@@ -446,13 +321,14 @@
 
                         <p style="text-align: justify;" >
                             <br>
-                            <strong>Goal-Conditioned Visual Encoder.</strong>
-                            At each time step goal-conditioned visual encoder processes visual data from two RGB cameras. It uses a Transformer encoder to turn the images into contextualized patch embeddings. These features are adjusted to fit the transformer's input dimensions. To distinguish between the two camera types, learnable camera-type embeddings are added. The patch features, goal features, and a special [CLS] token embedding are combined and fed into the transformer encoder. The output from the [CLS] token's position is used as the visual representation conditioned on the goal.
-
+                            <strong>Vision Transformer Model and Transformer State Encoder.</strong>
+                            We choose DINOv2 as our visual foundation backbone, because of its remarkable dense prediction and sim-to-real transfer abilities.
+                            The Transformer State Encoder module summarizes the state at each timestep as a vector <em>s</em>. The input to this encoder includes the visual representation <em>v</em>, the goal feature <em>g</em>, and an embedding <em>f</em> of a <tt>STATE</tt> token.
+                            We concatenate these features together and feed them to a non-causal transformer encoder. This encoder then returns the output corresponding to the <tt>STATE</tt> token as the state feature vector. Since the transformer state encoder digests both visual and goal features, the produced state feature vector can also be seen as a goal-conditioned visual state representation.
                         </p>
                     </div>
                     <div class="grid-item">
-                        <img src="static/images/visual_encoder_v2.png" alt="Image">
+                        <img src="static/images/transformer_state_encoder.png" alt="Image">
                         <!-- <p></p> -->
                     </div>
 
@@ -463,15 +339,15 @@
                 <div class="grid-container-two">
 
                     <div class="grid-item">
-                        <img src="static/images/action_decoder_v2.png" alt="Image">
+                        <img src="static/images/causal_transformer_decoder.png" alt="Image">
                         <!-- <p></p> -->
                     </div>
                     <div class="grid-item  centered-content">
 
                         <p style="text-align: justify;">
-                            <strong>Action Decoder.</strong>
-                            This model predicts actions using an autoregressive Transformer decoder with causal masking. It takes in a sequence of past and present visual representations, additively combined with sinusoidal temporal position encodings and learned embeddings for previous actions. The decoder uses cross-attention to condition on the goal encoding. For each time step, the transformer decoder's output is processed through linear and softmax layers to predict a distribution over possible actions. The model is optimized with cross-entropy loss.
-
+                            <strong>Causal Transformer Deocder with KV-Cache.</strong>
+                            We use a causal transformer decoder to perform explicit memory modeling over time. This can enable both long-horizon (e.g., exhaustive exploration with back-tracking) and short-horizon (e.g., navigating around an object) planning. Concretely, the causal transformer decoder constructs its state belief <em>b</em> using the sequence of state features <strong>s</strong> within the same trajectories.
+                            During the rollout stage and inference, we leverage the KV-cache technique to keep past feed-forward results in two cache matrices, one for Keys and one for Values. With a KV-cache, our causal transformer decoder only performs feedforward computations with the most current state feature which results in computation time growing only linearly in t rather than quadratically.
                         </p>
                     </div>
 
@@ -480,97 +356,34 @@
 
         </div>
 
+            <h3 class="title is-4">Scale in Rollouts</h3>
+            <p style="text-align: justify;">
+                We leverage hundreds of parallel rollouts and large batch sizes, which leads to high training throughput and allows us to train using a huge number of environment interactions.
+            </p>
+            <br>
+        <div class="content has-text-centered">
+            <video
+                    controls
+                    muted
+                    preload
+                    playsinline
+                    width="100%"
+                    autoplay
+                    loop>
+                <source src="static/videos/out_cut.mp4" type="video/mp4">
+            </video>
+        </div>
 
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section hero ">
-  <div class="container is-max-desktop" style="max-width: 1200px;">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" id="Simulation examples">Simulation examples</h2>
-
-        <p>
-          Here we present a few illustrative examples of our agent's behavior in simulation. In addition to the
-          agent's navigation (left) and manipulation (right) camera inputs, we also display the
-          probabilities the agent assigns to each of its available actions.
-        </p>
-
-        <br>
-
-        <p>
-            <div class="grid-container-one-no-box">
-                <div class="grid-item">
-                    <div class="card-static-container">
-                        <div class="card-container">
-
-
-                            <div class="card-double-wide">
-                                <div class="card-video">
-                                    <video width="100%" height="auto" controls>
-                                        <source src="static/videos/sim/readjust_to_reach.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Failure recovery</strong></h3>
-                                    <p>The agent initially fails to pick up the target object (headphones) but is able to recover from this failure and
-                                        successfully pick up the object on the second attempt.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <h3 class="title is-4">Scale in Diverse Environment Interactions</h3>
+            <p style="text-align: justify;">
+                Training PoliFormer with RL at scale in 150k procedurally generated PROCTHOR houses using optimized Objaverse assets results in steady validation set gains.
+            </p>
+            <br>
+            <div style="text-align: center;">
+                <img width="100%" src="./static/images/objaTHOR.png"
+                     class="interpolation-image"
+                     alt="header-image."/>
                 </div>
-
-
-                <div class="grid-item">
-                    <div class="card-static-container">
-                        <div class="card-container">
-                            <div class="card-double-wide">
-                                <div class="card-video">
-                                    <video width="100%" height="auto" controls>
-                                        <source src="static/videos/sim/highest_fruit_kitchen.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Spatial reasoning</strong></h3>
-                                    <p>The agent is attempting to find the "highest fruit" in the kitchen. Notice it ignores apple when passing it
-                                        by as it's still searching for other fruits. It eventually sees a bunch of bananas on a shelving unit,
-                                        as these bananas are lower than the apple, it then navigates to the apple and ends the episode.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="grid-item">
-                    <div class="card-static-container">
-                        <div class="card-container">
-                            <div class="card-double-wide">
-                                <div class="card-video">
-                                    <video width="100%" height="auto" controls>
-                                        <source src="static/videos/sim/find_laptop_on_sofa.mp4" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                                <div class="card-content">
-                                    <h3><strong>Contextual object search</strong></h3>
-                                    <p>            The agent is looking for a "laptop on a sofa". It first walks to the first sofa it sees, does not find
-                                        a laptop, and then explores until it finds the second sofa at which point it finds the laptop.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
       </div>
     </div>
   </div>
@@ -578,1288 +391,237 @@
 
 <section class="section hero is-light">
     <div class="container is-max-desktop" style="max-width: 1200px;">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title is-3" id="gt-detection">What if SPOC had perfect object perception?</h2>
-          <p>
-            Our RGB-only SPOC agent has learned to navigate and explore its environment effectively.
-            An error analysis indicates that most failures are caused from failures to recognize the target object.
-            We hypothesize that the effectiveness of SPOC as an explorer is less affected by its training via shortest path imitation, and instead seems gated by its object perception.
-            <p><br>
-            Indeed, when SPOC is trained with RGB inputs along with ground truth (gt) target object detection, i.e. providing it with bounding box coordinates when the target object is visible in its cameras,
-            the agent successfully navigates to the target object in 85% of trials, a notable increase from the 65% success rate of the RGB-only agent.
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3 has-text-centered" id="numbers">Quantitative Results</h2>
+                <p>
+                    PoliFormer achieves excellent results across multiple navigation benchmarks in simulation and the real world.
+                </p>
+                <br>
+                <h3 class="title is-4">In Simulation</h3>
+                <p style="text-align: justify;">
+                    On CHORES-S, it achieves an impressive 85.5% Success Rate, a higher than +28.5% absolute improvement over the previous SoTA model. Similarly, it also obtains SoTA Success Rates on Proc-THOR (+8.7%), ArchitecTHOR (+10.0%) and AI2-iTHOR (+6.9%). These results hold across two embodiments, LoCoBot and Stretch RE-1, with distinct action spaces.
+                </p>
+                <br>
+                <p>
+                <div class="grid-container-two">
 
+                    <div class="grid-item">
 
-          </p>
-          <br>
-          <p>
-            <div class="grid-container-two">
+                        <img src="static/images/stretch.png" alt="Image">
 
-                <div class="grid-item">
+                    </div>
+                    <div class="grid-item">
+                        <img src="static/images/locobot.png" alt="Image">
+                        <!-- <p></p> -->
+                    </div>
 
-                    <img src="static/images/chores_s_w_det.png" alt="Image">
 
                 </div>
-                <div class="grid-item">
-                    <img src="static/images/chores_l_w_det.png" alt="Image">
-                    <!-- <p></p> -->
+
+                <br>
+                <h3 class="title is-4">In the Real World</h3>
+                <p style="text-align: justify;">
+                    In the real world, it outperforms ObjectNav baselines in the sim-to-real zero-shot transfer setting using LoCoBot (+13.3%) and Stretch RE-1 (+33.3%).
+                </p>
+                <br>
+                <div class="grid-container-two">
+
+                    <div class="grid-item">
+
+                        <img src="static/images/stretch_real.png" alt="Image">
+
+                    </div>
+                    <div class="grid-item">
+                        <img src="static/images/locobot_real.png" alt="Image">
+                        <!-- <p></p> -->
+                    </div>
+
+
                 </div>
 
+                <br>
+                <h3 class="title is-4">With Perfect Object Perception</h3>
+                <p style="text-align: justify;">
+                    We further train PoliFormer-BoxNav, which accepts a bounding box (e.g., from an off-the-shelf open-vocab object detector) as its goal specification in place of a given category.
+                    PoliFormer-BoxNav not only achieves an amazing 95.5% success rate on CHORES-S, but is also robust across different difficulty levels.
+                    Moreover, this abstraction makes PoliFormer-BoxNav a general-purpose navigator that can be “prompted” by an external model akin to the design of Segment Anything, as shown in the <a href="#Real-world examples">Real-world examples</a>.
+                </p>
+                <br>
+                <div class="grid-container-two">
 
+                    <div class="grid-item">
+
+                        <img src="static/images/stretch_box.png" alt="Image">
+
+                    </div>
+                    <div class="grid-item">
+                        <img src="static/images/stretch_2k.png" alt="Image">
+                        <!-- <p></p> -->
+                    </div>
+
+
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </section>
 
 <section class="section hero">
-  <div class="container is-max-desktop" style="max-width: 1200px;">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3" id="Top-down trajectory visualizations">Top-down trajectory visualizations</h2>
-        <p>This figure shows top-down visualizations of our agent's object-navigation
-          trajectories on our validation set. Here we list all 200 examples within the validation set using our SPOC model
-          trained with ground-truth detections. The agent's path is visualized as a line that goes from white (episode start to red episode end).
-          We also add red markers to indicate the location of objects of the goal object category.
-        </p>
-        <br />
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3 has-text-centered" id="Simulation examples">Simulation Qualitative Results</h2>
+
+                <p>
+                    Here we show multiple examples of <span class="dpoliformer">PoliFormer</span>'s behavior in
+                    simulation. In addition to
+                    the agent's RGB camera input, we also display the
+                    probabilities the agent assigns to each of its available actions. For the Stretch agent
+                    we show two RGB images side-by-side, the first (left) is the agent's RGB camera input, and the
+                    second (right) corresponds to a "manipulation" camera that is positioned 90 degrees clockwise
+                    from the agent's front-facing camera. The manipulation camera is purely for visualization,
+                    <strong>our agent only sees the left image during training and inference</strong>.
+                </p>
+
+                <h3 class="title is-4" style="padding-top: 1em" id="sim-2986_6_search_for_a_mug">Backtracking in
+                    CHORES</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">PoliFormer</span> (Stretch RE-1 embodiment) explores multiple rooms,
+                        backtracks and
+                        finally finds the requested mug.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="./static/videos/sim/chores/2986_6_search_for_a_mug.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <h3 class="title is-4"
+                    id="sim-ArchitecTHOR-Test-00__proc5__global149__Laptop"
+                    style="padding-top: 1em">Finding a Laptop in ArchitecTHOR</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) ignores the bathroom
+                        in its search for a laptop
+                        in the bedroom. Top-down view is for visualization purposes only.
+                    </p>
+                </div>
+                <div class="content has-text-centered"
+                     style="display: flex; align-items: center; justify-content: center;">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="50%"> <!-- Adjust the width as needed -->
+                        <source src="./static/videos/sim/architecthor/ArchitecTHOR-Test-00__proc5__global149__Laptop.mp4"
+                                type="video/mp4">
+                    </video>
+                    <img src="./static/videos/sim/architecthor/ArchitecTHOR-Test-00__proc5__global149__Laptop.png"
+                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
+                </div>
+
+
+                <h3 class="title is-4"
+                    id="sim-51__proc16__global519__Television"
+                    style="padding-top: 1em">Finding a Television in ProcTHOR</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) searches through
+                        every room in a house before
+                        finally finding the television mounted on a wall. Top-down view is for visualization purposes
+                        only.
+                    </p>
+                </div>
+                <div class="content has-text-centered"
+                     style="display: flex; align-items: center; justify-content: center;">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="50%"> <!-- Adjust the width as needed -->
+                        <source src="./static/videos/sim/procthor/51__proc16__global519__Television.mp4"
+                                type="video/mp4">
+                    </video>
+                    <img src="./static/videos/sim/procthor/51__proc16__global519__Television.png"
+                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
+                </div>
+
+                <h3 class="title is-4"
+                    id="sim-FloorPlan326__proc21__global366__GarbageCan"
+                    style="padding-top: 1em">Finding a Garbage Can in iTHOR</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) first performs a 360
+                        degree spin to scan the environment,
+                        it then looks behind a bed, backtracks, and finally finds the garbage can next to a desk.
+                        Top-down view is for visualization purposes only.
+                    </p>
+                </div>
+                <div class="content has-text-centered"
+                     style="display: flex; align-items: center; justify-content: center;">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="50%">
+                        <source src="./static/videos/sim/ithor/FloorPlan326__proc21__global366__GarbageCan.mp4"
+                                type="video/mp4">
+                    </video>
+                    <img src="./static/videos/sim/ithor/FloorPlan326__proc21__global366__GarbageCan.png"
+                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
+                </div>
 
-
-        <div class="grid-container">
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__010248__vase.n.01__130.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012698__bed.n.01__105.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011633__atomizer.n.01__95.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__004110__basketball.n.02__185.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013818__ashcan.n.01__49.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013392__bed.n.01__94.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013464__houseplant.n.01__66.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011097__vase.n.01__172.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014397__apple.n.01__30.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__010846__atomizer.n.01__182.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013819__ashcan.n.01__29.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014947__laptop.n.01__26.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__005093__mug.n.04__159.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011951__bed.n.01__148.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013205__television_receiver.n.01__102.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012785__straight_chair.n.01__15.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014537__atomizer.n.01__170.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014945__atomizer.n.01__6.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013529__ashcan.n.01__85.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013018__toilet.n.02__193.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013807__mug.n.04__107.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013352__bowl.n.03__143.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013264__ashcan.n.01__77.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__008027__basketball.n.02__13.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013436__television_receiver.n.01__82.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013458__laptop.n.01__177.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012771__straight_chair.n.01__109.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012479__atomizer.n.01__188.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014424__vase.n.01__101.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013886__bed.n.01__10.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013943__bowl.n.03__136.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014774__bed.n.01__70.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014901__straight_chair.n.01__5.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__004526__mug.n.04__134.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012042__laptop.n.01__162.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014811__toilet.n.02__71.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013859__bed.n.01__175.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014563__houseplant.n.01__129.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013169__bowl.n.03__31.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013259__toilet.n.02__119.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013337__sofa.n.01__165.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011033__vase.n.01__173.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013975__laptop.n.01__114.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014916__television_receiver.n.01__138.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014426__sofa.n.01__120.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__001095__basketball.n.02__158.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013812__television_receiver.n.01__184.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014499__toilet.n.02__121.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013447__straight_chair.n.01__145.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013489__basketball.n.02__21.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014915__bed.n.01__189.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013391__laptop.n.01__37.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014840__toilet.n.02__55.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013265__bowl.n.03__69.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013298__mug.n.04__54.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014975__ashcan.n.01__179.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011865__vase.n.01__12.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012675__sofa.n.01__131.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014782__bed.n.01__91.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011535__atomizer.n.01__28.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013297__alarm_clock.n.01__98.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012696__houseplant.n.01__111.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014643__straight_chair.n.01__27.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011157__straight_chair.n.01__2.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014604__toilet.n.02__147.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014320__ashcan.n.01__140.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014510__laptop.n.01__43.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012266__atomizer.n.01__96.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014496__houseplant.n.01__108.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013175__laptop.n.01__128.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013687__houseplant.n.01__50.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014807__bed.n.01__132.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014034__houseplant.n.01__62.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011933__apple.n.01__156.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014129__straight_chair.n.01__63.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014561__bowl.n.03__164.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012592__bed.n.01__68.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012606__atomizer.n.01__59.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014326__houseplant.n.01__174.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014263__straight_chair.n.01__153.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014592__television_receiver.n.01__20.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013911__sofa.n.01__33.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012231__bowl.n.03__53.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012952__houseplant.n.01__75.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013278__alarm_clock.n.01__118.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011131__atomizer.n.01__4.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011295__sofa.n.01__80.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014788__television_receiver.n.01__168.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014446__atomizer.n.01__8.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014854__atomizer.n.01__76.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012854__vase.n.01__84.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014702__alarm_clock.n.01__155.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__009839__mug.n.04__11.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013351__sofa.n.01__115.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013549__ashcan.n.01__3.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014067__television_receiver.n.01__99.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013393__sofa.n.01__125.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013923__television_receiver.n.01__48.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014506__toilet.n.02__117.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012045__television_receiver.n.01__183.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013952__toilet.n.02__137.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012273__sofa.n.01__38.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013968__apple.n.01__110.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013445__toilet.n.02__73.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011321__apple.n.01__88.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013623__alarm_clock.n.01__194.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012238__straight_chair.n.01__154.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012350__laptop.n.01__9.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013340__houseplant.n.01__141.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__008828__mug.n.04__180.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012375__bowl.n.03__52.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014243__apple.n.01__61.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014286__ashcan.n.01__64.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014988__apple.n.01__60.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014234__atomizer.n.01__89.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013415__television_receiver.n.01__19.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013226__vase.n.01__32.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013181__straight_chair.n.01__149.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014122__toilet.n.02__42.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__009921__basketball.n.02__127.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013449__houseplant.n.01__24.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011881__apple.n.01__23.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014891__television_receiver.n.01__163.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012953__atomizer.n.01__90.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014172__bowl.n.03__97.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011819__toilet.n.02__87.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011599__straight_chair.n.01__176.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013639__sofa.n.01__16.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012454__laptop.n.01__46.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014314__straight_chair.n.01__190.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013027__straight_chair.n.01__17.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014635__bed.n.01__135.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013137__toilet.n.02__166.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014299__houseplant.n.01__191.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012692__bed.n.01__171.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012445__laptop.n.01__72.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012370__laptop.n.01__35.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014454__bed.n.01__74.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014684__apple.n.01__51.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013125__bowl.n.03__0.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013761__television_receiver.n.01__124.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013166__bowl.n.03__157.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__000420__mug.n.04__167.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__004495__mug.n.04__106.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__011059__sofa.n.01__123.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013668__sofa.n.01__25.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014044__ashcan.n.01__57.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013276__ashcan.n.01__41.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__000714__mug.n.04__112.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013312__vase.n.01__133.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013238__alarm_clock.n.01__104.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014416__bowl.n.03__39.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014423__sofa.n.01__113.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__014064__houseplant.n.01__78.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__012637__toilet.n.02__86.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/success__013699__laptop.n.01__81.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #7CFC00!important"> success</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012050__apple.n.01__192.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014636__alarm_clock.n.01__40.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013757__apple.n.01__151.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014490__bowl.n.03__161.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__011549__ashcan.n.01__1.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__008224__basketball.n.02__198.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014544__television_receiver.n.01__146.jpg" alt="Image">
-                <p>Target: television_receiver, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013167__ashcan.n.01__139.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__010822__vase.n.01__187.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__002986__mug.n.04__34.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013980__bed.n.01__44.jpg" alt="Image">
-                <p>Target: bed, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013422__alarm_clock.n.01__195.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013527__houseplant.n.01__92.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013731__apple.n.01__58.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__001730__mug.n.04__142.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013708__laptop.n.01__103.jpg" alt="Image">
-                <p>Target: laptop, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__008786__basketball.n.02__56.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013634__vase.n.01__22.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014765__alarm_clock.n.01__144.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__006954__mug.n.04__83.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014330__sofa.n.01__45.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013419__ashcan.n.01__152.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012793__alarm_clock.n.01__14.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014932__bowl.n.03__100.jpg" alt="Image">
-                <p>Target: bowl, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012507__alarm_clock.n.01__7.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012036__sofa.n.01__93.jpg" alt="Image">
-                <p>Target: sofa, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__002819__basketball.n.02__178.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014895__alarm_clock.n.01__181.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013641__vase.n.01__169.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__001852__mug.n.04__47.jpg" alt="Image">
-                <p>Target: mug, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__010940__basketball.n.02__36.jpg" alt="Image">
-                <p>Target: basketball, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014457__vase.n.01__67.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012080__ashcan.n.01__197.jpg" alt="Image">
-                <p>Target: ashcan, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013931__houseplant.n.01__186.jpg" alt="Image">
-                <p>Target: houseplant, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014070__alarm_clock.n.01__160.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013727__alarm_clock.n.01__122.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013653__alarm_clock.n.01__18.jpg" alt="Image">
-                <p>Target: alarm_clock, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014168__toilet.n.02__116.jpg" alt="Image">
-                <p>Target: toilet, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014568__atomizer.n.01__196.jpg" alt="Image">
-                <p>Target: atomizer, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012245__straight_chair.n.01__126.jpg" alt="Image">
-                <p>Target: straight_chair, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__012207__vase.n.01__150.jpg" alt="Image">
-                <p>Target: vase, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__014728__apple.n.01__79.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #FF0000!important"> failure</mark></p>
-            </div>
-
-
-            <div class="grid-item">
-                <img src="static/topdown_sim_images/fail__013426__apple.n.01__65.jpg" alt="Image">
-                <p>Target: apple, <mark style="background: #FF0000!important"> failure</mark></p>
             </div>
-
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-    <section class="section hero">
-    <div class="container is-max-desktop" style="max-width: 1200px;">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-            <h2 class="title">BibTeX</h2>
-            <div class="grid-container-one-no-box">
-            <pre><code>@article{spoc2023,        
-        author    = {Kiana Ehsani, Tanmay Gupta, Rose Hendrix, Jordi Salvador, Luca Weihs, Kuo-Hao Zeng, Kunal Pratap Singh, Yejin Kim, Winson Han, Alvaro Herrasti, Ranjay Krishna, Dustin Schwenk, Eli VanderBilt, Aniruddha Kembhavi},
-        title     = {Imitating Shortest Paths in Simulation Enables Effective Navigation and Manipulation in the Real World},
+<section class="section hero">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column" style="width: 100%;">
+                <h2 class="title">BibTeX</h2>
+                <div class="grid-container-one-no-box">
+            <pre><code>@article{
+        poliformer2024,
+        author    = {Kuo-Hao Zeng, Zichen Zhang, Kiana Ehsani, Rose Hendrix, Jordi Salvador, Alvaro Herrasti, Ross Girshick, Aniruddha Kembhavi, Luca Weihs},
+        title     = {PoliFormer: Scaling On-Policy RL with Transformers Results in Masterful Navigators},
         journal   = {arXiv},
-        year      = {2023},
-        eprint    = {2312.02976},
+        year      = {2024},
+        eprint    = {2406.20083},
 }</code></pre>
-              </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-    
+
 </section>
 
-
-<footer class="footer" style="background-color: #fff">
-  <div class="container">
-    <div class="columns is-centered">
-      <!-- <div class="column is-8"> -->
-        <div class="content">
-          <p>
-            <i>Website design credit: This website based on the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> licensed
-            <a rel="template" href="https://github.com/nerfies/nerfies.github.io">Nerfies website</a>.</i>
-          </p>
+<footer class="footer" style="background-color: #f5f5f5">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        This website based on the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA
+                        4.0</a> licensed
+                        <a rel="template" href="https://github.com/nerfies/nerfies.github.io">Nerfies website</a>.
+                    </p>
+                </div>
+            </div>
         </div>
-      <!-- </div> -->
     </div>
-  </div>
 </footer>
 
 </body>

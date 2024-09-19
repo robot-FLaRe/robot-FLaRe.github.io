@@ -1,5 +1,6 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
 }
 
 
@@ -116,10 +117,6 @@ body {
 
 }
 
-
-.publication-title {
-}
-
 .publication-banner {
   max-height: parent;
 
@@ -138,6 +135,8 @@ body {
 
 .publication-title {
     font-family: 'Google Sans', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .publication-authors {
@@ -270,7 +269,7 @@ body {
   max-height: 700px;
   overflow-y: auto;
   border: 2px solid #aaa;
-  padding: 10px;
+  padding: 25px;
   background-color: #FFFFFF;
 }
 
@@ -302,11 +301,17 @@ body {
 .grid-item {
     text-align: center;
     min-width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .grid-item img {
-    width: 80%;
+    width: 90%;
     min-width: auto;
     min-height: auto;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 .grid-item.centered-content {
@@ -314,4 +319,95 @@ body {
     align-items: center; /* Vertical centering */
     justify-content: center; /* Horizontal centering (optional) */
     height: 100%; /* Set a specific height or make it relative to the container */
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    .grid-container-two {
+        grid-template-columns: 1fr; /* Single column layout on mobile */
+    }
+
+    .grid-item {
+        margin-bottom: 15px; /* Add some space between items */
+    }
+}
+
+/* Optional: Adjusting padding and text alignment for smaller screens */
+@media (max-width: 480px) {
+    .container.is-max-desktop {
+        padding: 10px;
+    }
+
+    .title.is-3, .title.is-4 {
+        text-align: center;
+    }
+}
+
+#video-background {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#background-video {
+    margin-top: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+.hero-body {
+    position: relative;
+    z-index: 1;
+    color: black; /* Make sure the text is visible on the video background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.publication-authors, .publication-links {
+    margin-top: 1em;
+}
+
+.publication-links .external-link {
+    margin: 0.5em;
+}
+
+.text-frame {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.85); /* White background with some transparency */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px; /* Padding inside the frame */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.text-frame h1,
+.text-frame .publication-authors,
+.text-frame .publication-links {
+    margin: 10px 0; /* Adjust as needed */
+}
+
+/* Style for arXiv and Code buttons */
+.text-frame .publication-links .link-block a {
+    background-color: black !important; /* Change background to black */
+    color: white !important; /* Change text color to white */
+    border: none; /* Remove border if present */
+}
+
+.text-frame .publication-links .link-block a:hover {
+    background-color: #333 !important; /* Slightly lighter black on hover */
 }
