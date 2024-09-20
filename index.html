@@ -137,17 +137,17 @@
                     </h5>
                 </div>
 
-                <h2 class="title is-3" id="ttsc">FLaRe for seen capabilities</h2>
+                <br>
+                <h2 class="title is-3  has-text-centered" id="ttsc">FLaRe for seen capabilities</h2>
                 <p>
-                    For tasks that are in the trainig data of the base model that FLaRe fine-tunes upon, FLaRe can effectively align the policies towards task completion, thereby achieving state-of-the-art performances. Below, we show examples of tasks TODO
+                    For tasks that are in the trainig data of the base model that FLaRe fine-tunes upon, FLaRe can effectively align the policies towards task completion, thereby achieving state-of-the-art performances. Below, we show examples of tasks from the CHORES benchmark.
                 </p>
                 <br>
 
-                <h3 class="title is-4" id="find_apple_locobot">Find an apple (LoCoBot)</h3>
+                <h3 class="title is-4" id="find_apple_locobot">Find a Bed (from ObjectNav Task)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> finds an apple after navigating down a long hallway
-                        with many obstacles, including a chair that moves during the trajectory.
+                        <span class="dpoliformer">FLaRe policy</span> finds a bed after exploring the unseen apartment with many rooms.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -157,17 +157,14 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/find_apple_locobot_480p.mp4" type="video/mp4">
+                        <source src="static/videos/find_bed.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <h3 class="title is-4" id="find_humans_book_stretch">Find a book with title "Humans" (Stretch RE-1)</h3>
+                <h3 class="title is-4" id="find_humans_book_stretch">Grasp a Mug (from Pickup Task)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> ignores the book it begins the episode looking at
-                        and searches multiple rooms until it finds the book with the title "Humans". Please see the main
-                        paper for a close up of the book in question, space constraints on the supplementary materials
-                        prevent us from uploading a high resolution video of this trajectory.
+                        <span class="dpoliformer">FLaRe</span> successfully identifies and pick up a mug.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -177,16 +174,15 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/find_humans_book_stretch_480p.mp4" type="video/mp4">
+                        <source src="static/videos/grasp_mug.mp4" type="video/mp4">
                     </video>
                 </div>
 
 
-                <h3 class="title is-4" id="find_kitchen_stretch">Find the kitchen (Stretch RE-1)</h3>
+                <h3 class="title is-4" id="find_kitchen_stretch">Find and Hold the Apple (from Fetch Task)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        Starting from a bedroom, <span class="dpoliformer">PoliFormer</span> explores, correctly
-                        avoids entering a bathroom, and finally finds the kitchen.
+                        <span class="dpoliformer">FLaRe</span> identifies and navigate to an apple, correctly position its base such that the apple is reacheable, and successfully pick the apple up.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -196,23 +192,45 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/find_kitchen_480p.mp4" type="video/mp4">
+                        <source src="static/videos/fetch_apple.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <h2 class="title is-3" id="ttsc">FLaRe for unseen capabilities (Maybe change to include...)</h2>
+                <h3 class="title is-4">Visit all 6 Rooms in the House (from RoomVisit Task)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        <span class="dpoliformer">FLaRe</span> explore the room extremely efficiently without requiring a map, and
+                        successfully visit all 6 rooms, even though it has never seen this layout during training.
+                    </p>
+                </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/roomvisit.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <br>
+                <h2 class="title is-3 has-text-centered" id="ttsc">FLaRe for unseen capabilities</h2>
                 <p>
-                    For tasks that are in the trainig data of the base model that FLaRe fine-tunes upon, FLaRe can effectively aligh the policies towards task completion, thereby achieving state-of-the-art performances. Below, we show examples of tasks
+                    Besides achieving SoTA performances on the aforementioned tasks, FLaRe can also be used to
+                    efficiently adapt to new capabilities that are not presented in the training data of the base model.
+                    These capabilities can be new tasks, new embodiments, new reasoning skills, or new objectives.
+                    Below, we show examples of FLaRe adapting towards tasks and embodiments never seen during training.
                 </p>
 
-
-                <h3 class="title is-4" id="find_multi_stretch">Find a sofa, book, toilet, and houseplant (Stretch
-                    RE-1)</h3>
+                <br>
+                <h3 class="title is-4" id="find_multi_stretch">Locate the Chair Closest to the Refrigerator in the Kitchen (ObjNavRelAttr)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> is able to find multiple objects in a single
-                        episode.
-                        Here it initially finds a sofa and book, then a houseplant, and finally a toilet.
+                        The ObjNavRelAttr task requires the robot to not just
+                        find a specific type of object, but also reason about the object's attribute relative to other
+                        objects. In this video, the FLaRe policy succesfully control the robot to find the chair in the
+                        kitchen, while ignoring chairs that are in other rooms in the process.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -222,17 +240,16 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/find_multi_stretch_480p.mp4" type="video/mp4">
+                        <source src="static/videos/rel_ref_chair_frig.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <h3 class="title is-4" id="follow_toy_truck_stretch">Follow the toy truck (Stretch RE-1)</h3>
+                <h3 class="title is-4" id="follow_toy_truck_stretch">Navigate to an Equipemenet for Watching Movies and Shows (ObjNavAfford)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> follows a toy truck as it moves through multiple
-                        rooms in an indoor environment. Note that
-                        <span class="dpoliformer">PoliFormer</span> is not trained in dynamic environments but is
-                        nevertheless able to navigate while its target moves.
+                        The ObjNavAfford task requires the robot to have a high-level understanding of the affordance of
+                        different objects. In this video, the FLaRe policy is able to correctly identify the TV as a target
+                        object, and navigate to it, after a very long episode.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -242,16 +259,16 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/follow_toy_truck_480p.mp4" type="video/mp4">
+                        <source src="static/videos/affordance.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <h3 class="title is-4" id="follow_person_stretch">Follow the person (Stretch RE-1)</h3>
+                <h3 class="title is-4" id="follow_person_stretch">Find the Living Room (RoomNav)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        Similar to the above example, <span class="dpoliformer">PoliFormer</span> follows a person as
-                        they
-                        move down a hallway and into a kitchen.
+                        Unlike all the previous tasks, the RoomNav task requires the robot to understand concepts
+                        related to room types, rather than just focusing on the objects. Here, the robot successfully
+                        identifies the living room following the text instruction.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -261,16 +278,15 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/follow_person_stretch_480p.mp4" type="video/mp4">
+                        <source src="static/videos/living_room_nav.mp4" type="video/mp4">
                     </video>
                 </div>
 
-                <h3 class="title is-4" id="follow_toy_truck_elanding">Follow the toy truck (Stretch RE-1) in a different scene</h3>
+                <h3 class="title is-4" id="follow_toy_truck_elanding">Find a Bed (LocoBot)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> follows a toy truck in a different scene. Note that
-                        even with people walking in the clustered scene,
-                        <span class="dpoliformer">PoliFormer</span> is able to follow the toy truck smoothly over a long horizon.
+                        FLaRe allows us to repurpose the base model towards completely new embodiments. Here, we show
+                        the FLaRe policy controlling a LoCoBot (as oppose to Stretch) to find a bed.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -280,188 +296,10 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="static/videos/real-world/follow_toy_truck_elanding_480p.mp4" type="video/mp4">
+                        <source src="static/videos/locobot.mp4" type="video/mp4">
                     </video>
                 </div>
 
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section hero">
-    <div class="container is-max-desktop" style="max-width: 1200px;">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-
-            <h2 class="title is-3 has-text-centered" id="model">Train <u>Poli</u>cy Trans<u>Former</u> (PoliFormer) using Online RL at Scale</h2>
-
-        <p style="text-align: justify;">
-            Our method, PoliFormer, is a transformer-based model trained with on-policy RL in the AI2-THOR simulator at scale.
-        </p>
-        <br>
-            <h3 class="title is-4">Scale in Architecture</h3>
-            <p style="text-align: justify;">
-                We develop a fully transformer-based policy model that uses a powerful visual foundation model (DINOv2, a vision transformer), incorporates a transformer state encoder for improved state summarization, and employs a transformer decoder for explicit temporal memory modeling.
-            </p>
-
-        <div class="content">
-            <p>
-                <!-- <p>This is an inline equation: \( x^2 + y^2 = z^2 \)</p>
-                <p>This is a displayed equation: \[ E = mc^2 \]</p> -->
-
-
-
-            </p>
-
-            <p>
-                <div class="grid-container-two">
-
-                    <div class="grid-item centered-content">
-
-                        <p style="text-align: justify;" >
-                            <br>
-                            <strong>Vision Transformer Model and Transformer State Encoder.</strong>
-                            We choose DINOv2 as our visual foundation backbone, because of its remarkable dense prediction and sim-to-real transfer abilities.
-                            The Transformer State Encoder module summarizes the state at each timestep as a vector <em>s</em>. The input to this encoder includes the visual representation <em>v</em>, the goal feature <em>g</em>, and an embedding <em>f</em> of a <tt>STATE</tt> token.
-                            We concatenate these features together and feed them to a non-causal transformer encoder. This encoder then returns the output corresponding to the <tt>STATE</tt> token as the state feature vector. Since the transformer state encoder digests both visual and goal features, the produced state feature vector can also be seen as a goal-conditioned visual state representation.
-                        </p>
-                    </div>
-                    <div class="grid-item">
-                        <img src="static/images/transformer_state_encoder.png" alt="Image">
-                        <!-- <p></p> -->
-                    </div>
-
-
-                </div>
-
-                <br>
-                <div class="grid-container-two">
-
-                    <div class="grid-item">
-                        <img src="static/images/causal_transformer_decoder.png" alt="Image">
-                        <!-- <p></p> -->
-                    </div>
-                    <div class="grid-item  centered-content">
-
-                        <p style="text-align: justify;">
-                            <strong>Causal Transformer Deocder with KV-Cache.</strong>
-                            We use a causal transformer decoder to perform explicit memory modeling over time. This can enable both long-horizon (e.g., exhaustive exploration with back-tracking) and short-horizon (e.g., navigating around an object) planning. Concretely, the causal transformer decoder constructs its state belief <em>b</em> using the sequence of state features <strong>s</strong> within the same trajectories.
-                            During the rollout stage and inference, we leverage the KV-cache technique to keep past feed-forward results in two cache matrices, one for Keys and one for Values. With a KV-cache, our causal transformer decoder only performs feedforward computations with the most current state feature which results in computation time growing only linearly in t rather than quadratically.
-                        </p>
-                    </div>
-
-
-                </div>
-
-        </div>
-
-            <h3 class="title is-4">Scale in Rollouts</h3>
-            <p style="text-align: justify;">
-                We leverage hundreds of parallel rollouts and large batch sizes, which leads to high training throughput and allows us to train using a huge number of environment interactions.
-            </p>
-            <br>
-        <div class="content has-text-centered">
-            <video
-                    controls
-                    muted
-                    preload
-                    playsinline
-                    width="100%"
-                    autoplay
-                    loop>
-                <source src="static/videos/out_cut.mp4" type="video/mp4">
-            </video>
-        </div>
-
-            <h3 class="title is-4">Scale in Diverse Environment Interactions</h3>
-            <p style="text-align: justify;">
-                Training PoliFormer with RL at scale in 150k procedurally generated PROCTHOR houses using optimized Objaverse assets results in steady validation set gains.
-            </p>
-            <br>
-            <div style="text-align: center;">
-                <img width="100%" src="./static/images/objaTHOR.png"
-                     class="interpolation-image"
-                     alt="header-image."/>
-                </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section hero is-light">
-    <div class="container is-max-desktop" style="max-width: 1200px;">
-        <div class="columns is-centered">
-            <div class="column is-full-width">
-                <h2 class="title is-3 has-text-centered" id="numbers">Quantitative Results</h2>
-                <p>
-                    PoliFormer achieves excellent results across multiple navigation benchmarks in simulation and the real world.
-                </p>
-                <br>
-                <h3 class="title is-4">In Simulation</h3>
-                <p style="text-align: justify;">
-                    On CHORES-S, it achieves an impressive 85.5% Success Rate, a higher than +28.5% absolute improvement over the previous SoTA model. Similarly, it also obtains SoTA Success Rates on Proc-THOR (+8.7%), ArchitecTHOR (+10.0%) and AI2-iTHOR (+6.9%). These results hold across two embodiments, LoCoBot and Stretch RE-1, with distinct action spaces.
-                </p>
-                <br>
-                <p>
-                <div class="grid-container-two">
-
-                    <div class="grid-item">
-
-                        <img src="static/images/stretch.png" alt="Image">
-
-                    </div>
-                    <div class="grid-item">
-                        <img src="static/images/locobot.png" alt="Image">
-                        <!-- <p></p> -->
-                    </div>
-
-
-                </div>
-
-                <br>
-                <h3 class="title is-4">In the Real World</h3>
-                <p style="text-align: justify;">
-                    In the real world, it outperforms ObjectNav baselines in the sim-to-real zero-shot transfer setting using LoCoBot (+13.3%) and Stretch RE-1 (+33.3%).
-                </p>
-                <br>
-                <div class="grid-container-two">
-
-                    <div class="grid-item">
-
-                        <img src="static/images/stretch_real.png" alt="Image">
-
-                    </div>
-                    <div class="grid-item">
-                        <img src="static/images/locobot_real.png" alt="Image">
-                        <!-- <p></p> -->
-                    </div>
-
-
-                </div>
-
-                <br>
-                <h3 class="title is-4">With Perfect Object Perception</h3>
-                <p style="text-align: justify;">
-                    We further train PoliFormer-BoxNav, which accepts a bounding box (e.g., from an off-the-shelf open-vocab object detector) as its goal specification in place of a given category.
-                    PoliFormer-BoxNav not only achieves an amazing 95.5% success rate on CHORES-S, but is also robust across different difficulty levels.
-                    Moreover, this abstraction makes PoliFormer-BoxNav a general-purpose navigator that can be “prompted” by an external model akin to the design of Segment Anything, as shown in the <a href="#Real-world examples">Real-world examples</a>.
-                </p>
-                <br>
-                <div class="grid-container-two">
-
-                    <div class="grid-item">
-
-                        <img src="static/images/stretch_box.png" alt="Image">
-
-                    </div>
-                    <div class="grid-item">
-                        <img src="static/images/stretch_2k.png" alt="Image">
-                        <!-- <p></p> -->
-                    </div>
-
-
-                </div>
             </div>
         </div>
     </div>
@@ -471,26 +309,20 @@
     <div class="container is-max-desktop">
         <div class="columns is-centered">
             <div class="column is-full-width">
-                <h2 class="title is-3 has-text-centered" id="Simulation examples">Simulation Qualitative Results</h2>
+                <h2 class="title is-3 has-text-centered" id="Simulation examples">Behavior Analysis in Simulation and Realworld</h2>
 
                 <p>
-                    Here we show multiple examples of <span class="dpoliformer">PoliFormer</span>'s behavior in
-                    simulation. In addition to
-                    the agent's RGB camera input, we also display the
-                    probabilities the agent assigns to each of its available actions. For the Stretch agent
-                    we show two RGB images side-by-side, the first (left) is the agent's RGB camera input, and the
-                    second (right) corresponds to a "manipulation" camera that is positioned 90 degrees clockwise
-                    from the agent's front-facing camera. The manipulation camera is purely for visualization,
-                    <strong>our agent only sees the left image during training and inference</strong>.
+                    To better understand the decision-making process of FLaRe agent, we show multiple examples of
+                    <span class="dpoliformer">FLaRe</span>'s behavior both in simulation and in the real world,
+                    where we visualize both the camera
+                    inputs as well as the probabilities the agent assigns to each of its available actions.
                 </p>
 
-                <h3 class="title is-4" style="padding-top: 1em" id="sim-2986_6_search_for_a_mug">Backtracking in
-                    CHORES</h3>
+                <h3 class="title is-4" style="padding-top: 1em" id="sim-2986_6_search_for_a_mug">Grasp Retry in Fetch Task (Take a Spray Bottle)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        <span class="dpoliformer">PoliFormer</span> (Stretch RE-1 embodiment) explores multiple rooms,
-                        backtracks and
-                        finally finds the requested mug.
+                        <span class="dpoliformer">FLaRe</span> learns close-loop behavior. When the first grasp failed,
+                        the robot repositions itself and tries again, successfully grasping the spray bottle.
                     </p>
                 </div>
                 <div class="content has-text-centered">
@@ -500,18 +332,17 @@
                             preload
                             playsinline
                             width="100%">
-                        <source src="./static/videos/sim/chores/2986_6_search_for_a_mug.mp4" type="video/mp4">
+                        <source src="./static/videos/unpaired/retry_fetch_spray_bottle.mp4" type="video/mp4">
                     </video>
                 </div>
 
                 <h3 class="title is-4"
                     id="sim-ArchitecTHOR-Test-00__proc5__global149__Laptop"
-                    style="padding-top: 1em">Finding a Laptop in ArchitecTHOR</h3>
+                    style="padding-top: 1em">Grasp the Houseplant / Apple</h3>
                 <div class="content has-text-justified">
                     <p>
-                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) ignores the bathroom
-                        in its search for a laptop
-                        in the bedroom. Top-down view is for visualization purposes only.
+                        Even though the FLaRe agent does not have access to depth, it is able to learn good
+                        pickup policy that is robust to different surface heights in the real world.
                     </p>
                 </div>
                 <div class="content has-text-centered"
@@ -522,23 +353,28 @@
                             preload
                             playsinline
                             width="50%"> <!-- Adjust the width as needed -->
-                        <source src="./static/videos/sim/architecthor/ArchitecTHOR-Test-00__proc5__global149__Laptop.mp4"
+                        <source src="./static/videos/grasp_plant.mp4"
                                 type="video/mp4">
                     </video>
-                    <img src="./static/videos/sim/architecthor/ArchitecTHOR-Test-00__proc5__global149__Laptop.png"
-                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
+                                        <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="50%"> <!-- Adjust the width as needed -->
+                        <source src="./static/videos/grasp_apple.mp4"
+                                type="video/mp4">
+                    </video>
                 </div>
 
 
                 <h3 class="title is-4"
                     id="sim-51__proc16__global519__Television"
-                    style="padding-top: 1em">Finding a Television in ProcTHOR</h3>
+                    style="padding-top: 1em">RoomVisit in RoboThor (Distinct Scene)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) searches through
-                        every room in a house before
-                        finally finding the television mounted on a wall. Top-down view is for visualization purposes
-                        only.
+                        We find the policy to be quite robust across distinct realworld environments. In this video, we
+                        show the robot conducting room exploration in RoboThor.
                     </p>
                 </div>
                 <div class="content has-text-centered"
@@ -548,23 +384,19 @@
                             muted
                             preload
                             playsinline
-                            width="50%"> <!-- Adjust the width as needed -->
-                        <source src="./static/videos/sim/procthor/51__proc16__global519__Television.mp4"
+                            width="100%"> <!-- Adjust the width as needed -->
+                        <source src="./static/videos/robothor_3_room.mp4"
                                 type="video/mp4">
                     </video>
-                    <img src="./static/videos/sim/procthor/51__proc16__global519__Television.png"
-                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
                 </div>
 
                 <h3 class="title is-4"
                     id="sim-FloorPlan326__proc21__global366__GarbageCan"
-                    style="padding-top: 1em">Finding a Garbage Can in iTHOR</h3>
+                    style="padding-top: 1em">Locate a Produce that is best for Eating Fresh as Snacks (ObjNavAfford)</h3>
                 <div class="content has-text-justified">
                     <p>
-                        The <span class="dpoliformer">PoliFormer</span> agent (LoCoBot embodiment) first performs a 360
-                        degree spin to scan the environment,
-                        it then looks behind a bed, backtracks, and finally finds the garbage can next to a desk.
-                        Top-down view is for visualization purposes only.
+                        Another affordance task completion in the realworld, where the robot correctly identifies the
+                        right produce (i.e. Apple).
                     </p>
                 </div>
                 <div class="content has-text-centered"
@@ -574,39 +406,114 @@
                             muted
                             preload
                             playsinline
-                            width="50%">
-                        <source src="./static/videos/sim/ithor/FloorPlan326__proc21__global366__GarbageCan.mp4"
+                            width="100%">
+                        <source src="./static/videos/unpaired/good_affordnav.mp4"
                                 type="video/mp4">
                     </video>
-                    <img src="./static/videos/sim/ithor/FloorPlan326__proc21__global366__GarbageCan.png"
-                         alt="ArchitecTHOR Image" width="25%"> <!-- Adjust the width as needed -->
                 </div>
+
+
+                <h3 class="title is-4"
+                    style="padding-top: 1em">RoomVisit (Challenging) (TODO from here)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        Finally, we show...
+                        Requires exceptional memory capacity, and spactial reasoning abilities.
+                        (Notice how the agent is calling sub-done)
+
+                    </p>
+                </div>
+                <div class="content has-text-centered"
+                     style="display: flex; align-items: center; justify-content: center;">
+<!--                    <video-->
+<!--                            controls-->
+<!--                            muted-->
+<!--                            preload-->
+<!--                            playsinline-->
+<!--                            width="100%"> &lt;!&ndash; Adjust the width as needed &ndash;&gt;-->
+<!--                        <source src="https://www.youtube.com/watch?v=16duP6ga_Q8"-->
+<!--                                type="video/mp4">-->
+<!--                    </video>-->
+<!--                    <iframe width="100%"-->
+<!--                        src="https://www.youtube.com/embed/oJw1Y42h9jA"-->
+<!--                        title="YouTube video player"-->
+<!--                        frameborder="0"-->
+<!--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                        allowfullscreen>-->
+<!--                    </iframe>-->
+                    <iframe
+    src="https://www.youtube.com/embed/oJw1Y42h9jA?controls=1&mute=1&playsinline=1"
+    width="100%"
+    height="540"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+                </div>
+
+
 
             </div>
         </div>
+
     </div>
 </section>
 
-<section class="section hero">
+<section class="section hero is-light">
     <div class="container is-max-desktop">
         <div class="columns is-centered">
-            <div class="column" style="width: 100%;">
-                <h2 class="title">BibTeX</h2>
-                <div class="grid-container-one-no-box">
-            <pre><code>@article{
-        poliformer2024,
-        author    = {Kuo-Hao Zeng, Zichen Zhang, Kiana Ehsani, Rose Hendrix, Jordi Salvador, Alvaro Herrasti, Ross Girshick, Aniruddha Kembhavi, Luca Weihs},
-        title     = {PoliFormer: Scaling On-Policy RL with Transformers Results in Masterful Navigators},
-        journal   = {arXiv},
-        year      = {2024},
-        eprint    = {2406.20083},
-}</code></pre>
+            <div class="column is-full-width">
+                <h2 class="title is-3 has-text-centered" id="Real-world examples">Failure Mode Analysis</h2>
+
+                <h3 class="title is-4" id="follow_toy_truck_elanding">Find a Bed (LocoBot)</h3>
+                <div class="content has-text-justified">
+                    <p>
+                        FLaRe allows us to repurpose the base model towards completely new embodiments. Here, we show
+                        the FLaRe policy controlling a LoCoBot (as oppose to Stretch) to find a bed.
+                    </p>
                 </div>
+                <div class="content has-text-centered">
+                    <video
+                            controls
+                            muted
+                            preload
+                            playsinline
+                            width="100%">
+                        <source src="static/videos/locobot.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <p>Another failure mode that can happen both in simulation and in real world is the robot acting
+                    conservatively - sometimes it is not sure whether it has found the target obejct, and prefer to not
+                    say done and keep exploring</p>
+
             </div>
         </div>
-    </div>
+                <h2 class="title is-4 has-text-centered">Please check out our paper and code for more detail on FLaRe!</h2>
 
+    </div>
 </section>
+
+
+<!--<section class="section hero">-->
+<!--    <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered">-->
+<!--            <div class="column" style="width: 100%;">-->
+<!--                <h2 class="title">BibTeX</h2>-->
+<!--                <div class="grid-container-one-no-box">-->
+<!--            <pre><code>@article{-->
+<!--        poliformer2024,-->
+<!--        author    = {Kuo-Hao Zeng, Zichen Zhang, Kiana Ehsani, Rose Hendrix, Jordi Salvador, Alvaro Herrasti, Ross Girshick, Aniruddha Kembhavi, Luca Weihs},-->
+<!--        title     = {PoliFormer: Scaling On-Policy RL with Transformers Results in Masterful Navigators},-->
+<!--        journal   = {arXiv},-->
+<!--        year      = {2024},-->
+<!--        eprint    = {2406.20083},-->
+<!--}</code></pre>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</section>-->
 
 <footer class="footer" style="background-color: #f5f5f5">
     <div class="container">
